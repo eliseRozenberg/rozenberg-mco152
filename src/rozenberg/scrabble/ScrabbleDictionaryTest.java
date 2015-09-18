@@ -12,9 +12,9 @@ public class ScrabbleDictionaryTest {
 
 		ScrabbleDictionary q = new ScrabbleDictionary();
 		boolean contains = q.contains("herringbone");
-		Assert.assertEquals(true, contains);
+		Assert.assertTrue(contains);
 
 		contains = q.contains("ambfg");
-		Assert.assertEquals(false, contains);
+		Assert.assertFalse(contains);
 	}
 }

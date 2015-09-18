@@ -19,15 +19,13 @@ public class ScrabbleDictionary {
 			words.add(temp);
 		}
 		input.close();
+		Collections.sort(words);
 	}
 
 	/**
 	 * @return true if the dictionary contains the word, otherwise false.
 	 */
 	public boolean contains(String word) {
-		if (words.contains(word)) {
-			return true;
-		} else
-			return false;
+		return words.contains(word);
 	}
 }
