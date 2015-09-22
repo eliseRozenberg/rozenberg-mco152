@@ -8,9 +8,9 @@ public class MorseCodeTest {
 	@Test
 	public void testDecode() {
 		MorseCode q = new MorseCode();
-		String temp = q.decode(".... ..   __ _.__   _. ._ __ .   .. ...   . ._.. .. ... .");
+		String temp = q.decode(".... ..   -- -.--   -. .- -- .   .. ...   . .-.. .. ... .");
 		Assert.assertEquals("hi my name is elise", temp);
-		temp = q.decode("._ _... _._. _.. . .._. __. .... .. .___ _._ ._.. __ _. ___ .__. __._ ._. ... _ .._ ..._ .__ _.._ _.__ __..");
+		temp = q.decode(".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..");
 		Assert.assertEquals("abcdefghijklmnopqrstuvwxyz", temp);
 	}
 
@@ -18,11 +18,11 @@ public class MorseCodeTest {
 	public void testEncode() {
 		MorseCode q = new MorseCode();
 		String temp = q.encode("elisE Is");
-		Assert.assertEquals(". ._.. .. ... .   .. ...", temp);
+		Assert.assertEquals(". .-.. .. ... .   .. ...", temp);
 
 		temp = q.encode("abcdefghijklmnopqrstuvwxyz");
 		Assert.assertEquals(
-				"._ _... _._. _.. . .._. __. .... .. .___ _._ ._.. __ _. ___ .__. __._ ._. ... _ .._ ..._ .__ _.._ _.__ __..",
+				".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..",
 				temp);
 	}
 

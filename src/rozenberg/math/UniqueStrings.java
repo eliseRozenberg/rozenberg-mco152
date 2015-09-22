@@ -11,11 +11,17 @@ public class UniqueStrings {
 		// to see if there are duplicates
 		// do novice answer
 
-		/*
-		 * for (int i=0; i<array.length;i++){ boolean found = false; for (int
-		 * j=0;j<i;j++){ if (array[i].equals(array[j]) ) { found = true; } } if
-		 * (!found){ System.out.println(array[i]); } }
-		 */
+		for (int i = 0; i < array.length; i++) {
+			boolean found = false;
+			for (int j = 0; j < i; j++) {
+				if (array[i].equals(array[j])) {
+					found = true;
+				}
+			}
+			if (!found) {
+				System.out.println(array[i]);
+			}
+		}
 
 		HashSet<String> set = new HashSet<String>(); // go through the array
 		for (String s : array) { // if String is not in the set
