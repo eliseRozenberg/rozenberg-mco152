@@ -10,7 +10,8 @@ public class MorseCodeTest {
 		MorseCode q = new MorseCode();
 		String temp = q.decode(".... ..   -- -.--   -. .- -- .   .. ...   . .-.. .. ... .");
 		Assert.assertEquals("hi my name is elise", temp);
-		temp = q.decode(".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..");
+		temp = q.decode(
+				".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..");
 		Assert.assertEquals("abcdefghijklmnopqrstuvwxyz", temp);
 	}
 

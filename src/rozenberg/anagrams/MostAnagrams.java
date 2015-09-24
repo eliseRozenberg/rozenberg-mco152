@@ -56,14 +56,14 @@ public class MostAnagrams {
 
 		int largest = 0;
 		temp = null;
-		//run through sorted for most common anagram
+		// run through sorted for most common anagram
 		for (Map.Entry<String, Integer> entry : mapSorted.entrySet()) {
 			if (entry.getValue() > largest) {
 				largest = entry.getValue();
 				temp = entry.getKey();
 			}
 		}
-		//run through to find words of most common anagram
+		// run through to find words of most common anagram
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getValue().equals(temp)) {
 				System.out.println(entry.getKey());
