@@ -1,19 +1,20 @@
 package rozenberg.scrabble;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class ScrabbleDictionary {
 	private HashSet<String> words;
 
-	public ScrabbleDictionary() throws FileNotFoundException {
+	public ScrabbleDictionary() throws IOException {
 		// scan file into an array into the constructor
 		words = new HashSet<String>();
-		Scanner input = new Scanner(new File("./US.dic"));
-		while (input.hasNext()) {
-			words.add(input.next());
+		BufferedReader input = new BufferedReader(new FileReader("./US.dic"));
+		String line;
+		while ((line = input.readLine()) != null) {
+			words.add(line);
 		}
 		input.close();
 	}

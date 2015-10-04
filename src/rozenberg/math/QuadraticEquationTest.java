@@ -16,4 +16,17 @@ public class QuadraticEquationTest {
 		QuadraticEquation q = new QuadraticEquation(1, 3, -4);
 		Assert.assertEquals(-4, q.getNegative(), 0.01);
 	}
+
+	// put to in one or check everyone in a new test
+	@Test
+	public void testInvalidDataException() {
+		try {
+			new QuadraticEquation(0, 3, -4);
+		} catch (InvalidDataException ex1) {
+		}
+		try {
+			new QuadraticEquation(1, 0, 4);
+		} catch (InvalidDataException ex1) {
+		}
+	}
 }

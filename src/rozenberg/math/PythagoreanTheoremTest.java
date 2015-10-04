@@ -26,4 +26,27 @@ public class PythagoreanTheoremTest {
 		Assert.assertEquals(33.27, p.getA(), 0.01);
 
 	}
+
+	// check if separate or not
+	@Test
+	public void testInvalidDataException() {
+		try {
+			PythagoreanTheorem p = new PythagoreanTheorem();
+			p.setAB(0, 2);
+		} catch (InvalidDataException ex1) {
+		}
+
+		try {
+			PythagoreanTheorem p = new PythagoreanTheorem();
+			p.setBC(0, 2);
+		} catch (InvalidDataException ex1) {
+		}
+
+		try {
+			PythagoreanTheorem p = new PythagoreanTheorem();
+			p.setAC(0, 2);
+		} catch (InvalidDataException ex1) {
+		}
+	}
+
 }

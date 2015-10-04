@@ -1,7 +1,12 @@
 package rozenberg.math;
 
 public class InvalidDataException extends RuntimeException {
-	public InvalidDataException(){
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InvalidDataException() {
 		super("invalid data");
 	}
 }

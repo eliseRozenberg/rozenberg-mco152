@@ -17,18 +17,13 @@ public class Projectile {
 
 	public double getX() {
 		return Math.sin(radians) * velocity * time;
-
 	}
 
 	public double getY() {
 		return Math.cos(radians) * velocity * time - (.5 * 9.8 * time * time);
+	}
 
-	}
-	 
-	public void setTime(double ti){
+	public void setTime(double ti) {
 		time = ti;
-		
 	}
-	
-	//to modify the file for git practice
 }

@@ -1,49 +1,32 @@
 package rozenberg.anagrams;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class MostAnagrams {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 
 		HashMap<String, Integer> mapSorted = new HashMap<String, Integer>();
 		HashMap<String, String> map = new HashMap<String, String>();
 		char[] word;
 		String key;
-		String temp = null;
-		Scanner input = new Scanner(new File("./US.dic"));
-
+		BufferedReader input = new BufferedReader(new FileReader("./US.dic"));
+		String line;
 		// go through file
-		while (input.hasNext()) {
-			temp = input.next();
+		while ((line = input.readLine()) != null) {
 			// put into array of characters
-			word = temp.toCharArray();
-
-			// sort characters
-			char holder;
-			boolean swapped;
-			do {
-				swapped = false;
-				for (int start = 0; start < word.length - 1; start++) {
-					if (word[start] > word[start + 1]) {
-						holder = word[start];
-						word[start] = word[start + 1];
-						word[start + 1] = holder;
-						swapped = true;
-					} // end if
-				} // end for
-
-			} while (swapped);
-			// end sort
+			word = line.toCharArray();
+			Arrays.sort(word);
 
 			// put char array into String
 			key = String.valueOf(word);
 			// put into map with unsorted word version
-			map.put(temp, key);
+			map.put(line, key);
 			// put into sorted - check for duplicate
 			Integer value = mapSorted.get(key);
 			if (value == null) {
@@ -55,17 +38,17 @@ public class MostAnagrams {
 		input.close();
 
 		int largest = 0;
-		temp = null;
+		line = null;
 		// run through sorted for most common anagram
 		for (Map.Entry<String, Integer> entry : mapSorted.entrySet()) {
 			if (entry.getValue() > largest) {
 				largest = entry.getValue();
-				temp = entry.getKey();
+				line = entry.getKey();
 			}
 		}
 		// run through to find words of most common anagram
 		for (Map.Entry<String, String> entry : map.entrySet()) {
-			if (entry.getValue().equals(temp)) {
+			if (entry.getValue().equals(line)) {
 				System.out.println(entry.getKey());
 			}
 		}

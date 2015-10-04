@@ -11,8 +11,7 @@ public class ShowDuplicates {
 		// if not contained in the set- print it out- then add it to the set
 		// an array is unordered- while the set is not guaranteed- can be
 		// returned in any order
-		String[] array = new String[] { "A", "A", "B", "C", "F", "F", "G", "B",
-				"C", "Z" };
+		String[] array = new String[] { "A", "A", "B", "C", "F", "F", "G", "B", "C", "Z" };
 		HashSet<String> uniqueSet = new HashSet<String>();
 		HashSet<String> printSet = new HashSet<String>();
 		// go through the array
@@ -20,8 +19,7 @@ public class ShowDuplicates {
 			if (uniqueSet.contains(s) && (!printSet.contains(s))) {
 				System.out.println(s);
 				printSet.add(s);
-			}
-			else if (!uniqueSet.contains(s)){
+			} else if (!uniqueSet.contains(s)) {
 				uniqueSet.add(s);
 			}
 
