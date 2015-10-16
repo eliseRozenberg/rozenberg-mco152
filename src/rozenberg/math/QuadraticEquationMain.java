@@ -7,5 +7,6 @@ public class QuadraticEquationMain {
 
 		System.out.println(dd.getNegative());
 		System.out.println(dd.getPositive());
+		
 	}
 }
