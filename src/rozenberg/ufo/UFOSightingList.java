@@ -1,4 +1,4 @@
-package schwimmer.ufo;
+package rozenberg.ufo;
 
 import java.util.ArrayList;
 

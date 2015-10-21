@@ -1,4 +1,4 @@
-package schwimmer.ufo;
+package rozenberg.ufo;
 
 public class UFOSighting {
 	private String sightedAd;

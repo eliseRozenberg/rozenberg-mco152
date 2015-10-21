@@ -1,4 +1,4 @@
-package schwimmer.ufo;
+package rozenberg.ufo;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
