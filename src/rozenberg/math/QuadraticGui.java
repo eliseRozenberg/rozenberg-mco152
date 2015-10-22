@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class QuadraticGui extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textFieldA;
 	private JTextField textFieldB;
 	private JTextField textFieldC;

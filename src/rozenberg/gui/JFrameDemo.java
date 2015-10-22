@@ -1,22 +1,22 @@
 package rozenberg.gui;
 
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class JFrameDemo extends JFrame {
 	// expected way to do it
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// if you have components to be used, add them here
-	private JTextField textField1;
+	//private JTextField textField1;
 	private JLabel textLabel1;
 	private JLabel textLabel2;
 	private JLabel textLabel3;
