@@ -1,11 +1,10 @@
 package rozenberg.ufo;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-//import com.google.gson.Gson;
+import com.google.gson.Gson;
 
 public class UFOSightingMain {
 
@@ -14,10 +13,10 @@ public class UFOSightingMain {
 
 		// final to indicate that it shouldnt be changed
 		final BufferedReader in = new BufferedReader(new FileReader("./ufo_awesome.json"));
-		//final Gson gson = new Gson();
+		final Gson gson = new Gson();
 
-		//final UFOSightingList array = gson.fromJson(in, UFOSightingList.class);
-		//System.out.println(array.size());
+		final UFOSightingList array = gson.fromJson(in, UFOSightingList.class);
+		System.out.println(array.size());
 
 		in.close();
 	}

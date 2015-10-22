@@ -38,7 +38,7 @@ public class QuadraticGui extends JFrame {
 		add(textLabelC);
 		double c = Double.parseDouble(textLabelC.getText());
 
-		buttonCalc = new JButton("Calculate");
+		buttonCalc = new JButton("Compute");
 		add(buttonCalc);
 
 		buttonCalc.addActionListener(new ActionListener() {
