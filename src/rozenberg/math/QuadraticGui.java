@@ -1,4 +1,4 @@
-package rozenberg.math;
+package math;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -11,11 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class QuadraticGui extends JFrame {
-	private JTextField textField1;
-	private JLabel textLabelA;
-	private JLabel textLabelB;
-	private JLabel textLabelC;
-	private QuadraticEquation quadratic;
+	private JTextField textFieldA;
+	private JTextField textFieldB;
+	private JTextField textFieldC;
+
+	private JLabel labelA;
+	private JLabel labelB;
+	private JLabel labelC;
+	private JLabel labelAns;
+
 	private JButton buttonCalc;
 
 	public QuadraticGui() {
@@ -26,28 +30,46 @@ public class QuadraticGui extends JFrame {
 		Container container = getContentPane();
 		setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
-		textLabelA = new JLabel("A =");
-		add(textLabelA);
-		double a = Double.parseDouble(textLabelA.getText());
+		labelA = new JLabel("A");
+		add(labelA);
 
-		textLabelB = new JLabel("B = ");
-		add(textLabelB);
-		double b = Double.parseDouble(textLabelB.getText());
+		textFieldA = new JTextField();
+		add(textFieldA);
 
-		textLabelC = new JLabel("C = ");
-		add(textLabelC);
-		double c = Double.parseDouble(textLabelC.getText());
+		labelB = new JLabel("B");
+		add(labelB);
 
-		buttonCalc = new JButton("Compute");
+		textFieldB = new JTextField();
+		add(textFieldB);
+
+		labelC = new JLabel("C");
+		add(labelC);
+
+		textFieldC = new JTextField();
+		add(textFieldC);
+
+		buttonCalc = new JButton("Calculate");
 		add(buttonCalc);
+
+		labelAns = new JLabel();
+		add(labelAns);
 
 		buttonCalc.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				System.out.println(quadratic.getPositive());
-				System.out.println(quadratic.getNegative());
+				double a = Double.parseDouble(textFieldA.getText());
+				double b = Double.parseDouble(textFieldB.getText());
+				double c = Double.parseDouble(textFieldC.getText());
+
+				try {
+					QuadraticEquation quadratic = new QuadraticEquation(a, b, c);
+					Double getN = quadratic.getNegative();
+					Double getP = quadratic.getPositive();
+					labelAns.setText("Negative: " + getN.toString() + " Positive: " + getP.toString());
+				} catch (InvalidDataException e) {
+					System.exit(1);
+				}
 
 			}
 
