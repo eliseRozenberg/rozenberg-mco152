@@ -7,12 +7,19 @@ import javax.swing.JFrame;
 
 public class SmileJFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public SmileJFrame() {
 		setTitle("Smile");
-		setSize(800, 800);
+		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		BorderLayout layout = new BorderLayout();
+		//BorderLayout layout = new BorderLayout();
+		//container.setLayout(new BorderLayout());
+
 		Container container = getContentPane();
 		container.setLayout(new BorderLayout());
 		container.add(new SmileComponent(), BorderLayout.CENTER);
