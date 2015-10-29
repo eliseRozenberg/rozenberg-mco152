@@ -76,5 +76,4 @@ public class ProjectileGui extends JFrame {
 		ProjectileGui frame = new ProjectileGui();
 		frame.setVisible(true);
 	}
-
 }
