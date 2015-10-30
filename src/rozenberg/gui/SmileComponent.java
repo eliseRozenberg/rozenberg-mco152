@@ -17,6 +17,9 @@ public class SmileComponent extends JComponent {
 	// components can draw themselves when told by the OS
 
 	// CAN ONLY DRAW TO THE STRING INSIDE THE PAINT COMPONENT!!
+
+	private int y = 0;
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -32,15 +35,31 @@ public class SmileComponent extends JComponent {
 
 		g.setColor(Color.blue);
 		g.fillOval(200, 200, 50, 50);
-
+		
+		g.setColor(Color.yellow);
+		g.fillOval(200, 200, 50, 50-y);
+		
 		g.setColor(Color.blue);
 		g.fillOval(350, 200, 50, 50);
 
 		g.setColor(Color.red);
 		g.fillArc(200, 230, 200, 200, 0, -180);
+		
+		if (y==50)
+			y=0;
+		
+		try {
+			Thread.sleep(3);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		y++;
 
 		// g.drawOval(100, 100, getWidth()-200, getHeight()-200);
 		// to resize with screen
+		super.repaint();
 
 	}
 

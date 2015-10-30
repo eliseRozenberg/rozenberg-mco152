@@ -7,7 +7,17 @@ import java.util.HashSet;
 
 public class ScrabbleDictionary {
 	private HashSet<String> words;
+	/*private static ScrabbleDictionary singleton;
 
+
+	public static ScrabbleDictionary getInstance() throws IOException {
+		if (singleton == null) {
+			singleton = new ScrabbleDictionary();
+		}
+		return singleton;
+	}
+	private ScrabbleDictionary() throws IOException{
+	*/
 	public ScrabbleDictionary() throws IOException {
 		// scan file into an array into the constructor
 		words = new HashSet<String>();
