@@ -49,7 +49,7 @@ public class MostAnagrams {
 		// run through to find words of most common anagram
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getValue().equals(line)) {
-				System.out.println(entry.getKey());
+				System.out.print(entry.getKey() + " ");
 			}
 		}
 
