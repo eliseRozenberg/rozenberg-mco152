@@ -21,12 +21,11 @@ public class QuadraticEquationTest {
 	@Test
 	public void testInvalidDataException() {
 		try {
-			new QuadraticEquation(0, 3, -4);
-		} catch (InvalidDataException ex1) {
+			new QuadraticEquation(0, 0, 0);
+			Assert.fail("didn’t throw exception");
+		} catch (InvalidDataException e) {
+			//expected
 		}
-		try {
-			new QuadraticEquation(1, 0, 4);
-		} catch (InvalidDataException ex1) {
-		}
+		
 	}
 }
