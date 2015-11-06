@@ -15,7 +15,7 @@ public class AirplaneSeats {
 
 	Set<String> reserved;
 	HashMap<Integer, Character> seat2;
-	char [][]seatsArray;
+	char[][] seatsArray;
 	HashMap<Character, Integer> seat;
 	int rows;
 	int columns;
@@ -29,7 +29,7 @@ public class AirplaneSeats {
 	public AirplaneSeats(int rows, int columns) {
 		this.columns = columns;
 		this.rows = rows;
-		seatsArray= new char[rows][columns];
+		seatsArray = new char[rows][columns];
 		seat = new HashMap<Character, Integer>();
 		seat.put('A', 1);
 		seat.put('B', 2);
@@ -103,14 +103,10 @@ public class AirplaneSeats {
 		if (reserved.contains(seatName)) {
 			throw new AlreadyReservedException();
 		}
-		if (col > columns) {
+		if (seat.get(col) > columns) {
 			throw new SeatOutOfBoundsException();
 		}
-		if (seatName.length() == 2) {
-			rowString = seatName.substring(0, seatName.length() - 1);
-		} else {
-			rowString = seatName.substring(0, seatName.length() - 2);
-		}
+		rowString = seatName.substring(1);
 		row = Integer.parseInt(rowString);
 		if (row > this.rows) {
 			throw new SeatOutOfBoundsException();
@@ -164,9 +160,17 @@ public class AirplaneSeats {
 		builder.append("\n");
 		for (int i = 1; i < rows; i++) {
 			builder.append(i);
+			for (int j = 0; j < columns; j++) {
+				if (seatsArray[i][j] == '#') {
+					builder.append("#");
+				} else {
+					builder.append("o");
+				}
+			}
+			builder.append("\n");
 		}
-		builder.append();
-		return builder.toString();
+
+		return builder.toString().trim();
 	}
 
 	/**
@@ -181,17 +185,15 @@ public class AirplaneSeats {
 	 *             if there are not enough seats together to reserve.
 	 */
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether) throws NotEnoughSeatsException {
-		int col;
-		StringBuilder nuilder = new StringBuilder
-		for (int i = 0; i < rows-1; i++){
-			for (int j=0; j < columns-1; j++){
-				if (seatsArray.equals('#')){
-					break;
-				}
+		char col;
+		int colNum;
+		boolean found;
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < rows - 1; i++) {
+			for (int j = 0; j < columns - 1; j++) {
 			}
-			String
-			reserve();
 		}
+		return null;
 	}
 
 	/**

@@ -61,6 +61,12 @@ public class AirplaneSeatsTest {
 	 */
 	public void testReserveThrowsSeatOutOfBoundsException() throws AlreadyReservedException {
 		Assert.fail("Test not implemented");
+		AirplaneSeats seats = new AirplaneSeats(1, 1);
+		try {
+			seats.reserve("B2");
+			Assert.fail("reserve() should've thrown an Exception");
+		} catch (SeatOutOfBoundsException e) {
+		}
 	}
 
 	@Test
@@ -70,8 +76,8 @@ public class AirplaneSeatsTest {
 	 */
 	public void testIsPlaneFullReturnsFalse() throws AlreadyReservedException, SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
-		seats.reserveAll("A1", "B1", "C1", "D1");
-		Assert.assertTrue(seats.isPlaneFull());
+		seats.reserveAll("A1");
+		Assert.assertFalse(seats.isPlaneFull());
 	}
 
 	@Test
@@ -94,7 +100,8 @@ public class AirplaneSeatsTest {
 	 * empty plane.
 	 */
 	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException {
-		Assert.fail("Test not implemented");
+		AirplaneSeats seats = new AirplaneSeats(3, 4);
+
 	}
 
 	@Test
