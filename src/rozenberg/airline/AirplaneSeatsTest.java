@@ -60,7 +60,6 @@ public class AirplaneSeatsTest {
 	 * attempt to reserve a seat that is outside the bounds of the plane.
 	 */
 	public void testReserveThrowsSeatOutOfBoundsException() throws AlreadyReservedException {
-		Assert.fail("Test not implemented");
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
 		try {
 			seats.reserve("B2");
@@ -101,7 +100,7 @@ public class AirplaneSeatsTest {
 	 */
 	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
-
+		seats.reserveGroup(3);
 	}
 
 	@Test
@@ -111,8 +110,13 @@ public class AirplaneSeatsTest {
 	 * whose "A1" is occupied, calling reserveGroup(4) should return a list of
 	 * elements ["A2", "B2", "C2", "D2"]
 	 */
-	public void testReserveGroupOnPartiallyFilledPlane() throws NotEnoughSeatsException {
-		Assert.fail("Test not implemented");
+	public void testReserveGroupOnPartiallyFilledPlane()
+			throws NotEnoughSeatsException, AlreadyReservedException, SeatOutOfBoundsException {
+		AirplaneSeats seats = new AirplaneSeats(3, 4);
+		seats.reserve("A1");
+		seats.reserve("A2");
+		seats.reserve("B1");
+		seats.reserveGroup(3);
 	}
 
 	@Test
@@ -120,8 +124,23 @@ public class AirplaneSeatsTest {
 	 * Tests that reserveGroup() throws NotEnoughSeatsException if there are not
 	 * enough seats available together for the group.
 	 */
-	public void testReserveGroupThrowsNotEnoughSeatsException() {
-		Assert.fail("Test not implemented");
+
+	public void testReserveGroupThrowsNotEnoughSeatsException()
+			throws AlreadyReservedException, SeatOutOfBoundsException {
+		AirplaneSeats seats = new AirplaneSeats(2, 4);
+		seats.reserve("A1");
+		seats.reserve("A2");
+		seats.reserve("B1");
+		seats.reserve("B2");
+		seats.reserve("C1");
+		seats.reserve("C2");
+		seats.reserve("D1");
+		seats.reserve("D2");
+		try {
+			seats.reserveGroup(3);
+			Assert.fail("reserveGroup() should've thrown an Exception");
+		} catch (NotEnoughSeatsException e) {
+		}
 	}
 
 }

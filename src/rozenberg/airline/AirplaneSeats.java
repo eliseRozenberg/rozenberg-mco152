@@ -1,10 +1,8 @@
 package rozenberg.airline;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * This class is part of an Airline Reservation system. It holds seats that are
@@ -13,12 +11,9 @@ import java.util.Set;
  */
 public class AirplaneSeats {
 
-	Set<String> reserved;
-	HashMap<Integer, Character> seat2;
-	char[][] seatsArray;
-	HashMap<Character, Integer> seat;
-	int rows;
-	int columns;
+	String[][] seats;
+	HashSet<String> reserved;
+	StringBuilder builder = new StringBuilder();
 
 	/**
 	 * @param rows
@@ -27,62 +22,16 @@ public class AirplaneSeats {
 	 *            the number of columns of seats on the plane.
 	 */
 	public AirplaneSeats(int rows, int columns) {
-		this.columns = columns;
-		this.rows = rows;
-		seatsArray = new char[rows][columns];
-		seat = new HashMap<Character, Integer>();
-		seat.put('A', 1);
-		seat.put('B', 2);
-		seat.put('C', 3);
-		seat.put('D', 4);
-		seat.put('E', 5);
-		seat.put('F', 6);
-		seat.put('G', 7);
-		seat.put('H', 8);
-		seat.put('I', 9);
-		seat.put('J', 10);
-		seat.put('K', 11);
-		seat.put('L', 12);
-		seat.put('M', 13);
-		seat.put('N', 14);
-		seat.put('O', 15);
-		seat.put('P', 16);
-		seat.put('Q', 17);
-		seat.put('R', 18);
-		seat.put('S', 19);
-		seat.put('T', 20);
-		seat.put('U', 21);
-		seat.put('V', 22);
-		seat.put('W', 23);
-		seat.put('X', 24);
-		seat.put('Y', 25);
-		seat.put('Z', 26);
-		seat2.put(1, 'A');
-		seat2.put(2, 'B');
-		seat2.put(3, 'C');
-		seat2.put(4, 'D');
-		seat2.put(5, 'E');
-		seat2.put(6, 'F');
-		seat2.put(7, 'G');
-		seat2.put(8, 'H');
-		seat2.put(9, 'I');
-		seat2.put(10, 'J');
-		seat2.put(11, 'K');
-		seat2.put(12, 'L');
-		seat2.put(13, 'M');
-		seat2.put(14, 'N');
-		seat2.put(15, 'O');
-		seat2.put(16, 'P');
-		seat2.put(17, 'Q');
-		seat2.put(18, 'R');
-		seat2.put(19, 'S');
-		seat2.put(20, 'T');
-		seat2.put(21, 'U');
-		seat2.put(22, 'V');
-		seat2.put(23, 'W');
-		seat2.put(24, 'X');
-		seat2.put(25, 'Y');
-		seat2.put(26, 'Z');
+		seats = new String[rows][columns];
+
+		for (int i = 0; i < seats.length; i++) {
+			for (int j = 0; j < seats[i].length; j++) {
+				builder.append((char) (j + 65));
+				builder.append((i + 1));
+				seats[i][j] = builder.toString().trim();
+				builder.setLength(0);
+			}
+		}
 		reserved = new HashSet<String>();
 	}
 
@@ -97,22 +46,25 @@ public class AirplaneSeats {
 	 *             constructor
 	 */
 	public void reserve(String seatName) throws AlreadyReservedException, SeatOutOfBoundsException {
-		int row;
-		String rowString;
-		char col = seatName.charAt(0);
+		boolean found = false;
 		if (reserved.contains(seatName)) {
 			throw new AlreadyReservedException();
 		}
-		if (seat.get(col) > columns) {
+		for (int i = 0; i < seats.length; i++) {
+			for (int j = 0; j < seats[i].length; j++) {
+				if (seats[i][j].equals(seatName)) {
+					reserved.add(seatName);
+					found = true;
+					break;
+				}
+				if (found) {
+					break;
+				}
+			}
+		}
+		if (!found) {
 			throw new SeatOutOfBoundsException();
 		}
-		rowString = seatName.substring(1);
-		row = Integer.parseInt(rowString);
-		if (row > this.rows) {
-			throw new SeatOutOfBoundsException();
-		}
-		reserved.add(seatName);
-		seatsArray[row][col] = '#';
 	}
 
 	/**
@@ -153,24 +105,25 @@ public class AirplaneSeats {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		for (int i = 1; i < columns; i++) {
-			builder.append(seat2.get(i));
+		builder.setLength(0);
+		builder.append("  ");
+		for (int j = 1; j <= seats[0].length; j++) {
+			builder.append((char) (j + 64));
 		}
-		builder.append("\n");
-		for (int i = 1; i < rows; i++) {
-			builder.append(i);
-			for (int j = 0; j < columns; j++) {
-				if (seatsArray[i][j] == '#') {
-					builder.append("#");
+		for (int i = 0; i < seats.length; i++) {
+			builder.append("\n");
+			builder.append((i + 1));
+			builder.append(" ");
+			for (int j = 0; j < seats[i].length; j++) {
+				if (reserved.contains(seats[i][j])) {
+					builder.append('#');
 				} else {
-					builder.append("o");
+					builder.append('o');
 				}
 			}
-			builder.append("\n");
 		}
-
-		return builder.toString().trim();
+		builder.append("\n");
+		return builder.toString();
 	}
 
 	/**
@@ -185,22 +138,31 @@ public class AirplaneSeats {
 	 *             if there are not enough seats together to reserve.
 	 */
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether) throws NotEnoughSeatsException {
-		char col;
-		int colNum;
-		boolean found;
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < rows - 1; i++) {
-			for (int j = 0; j < columns - 1; j++) {
+		for (int i = 0; i < seats.length; i++) {
+			for (int j = 0; j < seats[i].length; j++) {
+				if ((j + 3) < seats[i].length && (!reserved.contains(seats[i][j]) && !reserved.contains(seats[i][j + 1])
+						&& !reserved.contains(seats[i][j + 2]) && !reserved.contains(seats[i][j + 3]))) {
+					reserved.add(seats[i][j]);
+					reserved.add(seats[i][j + 1]);
+					reserved.add(seats[i][j + 2]);
+					reserved.add(seats[i][j + 3]);
+					return new ArrayList<String>(
+							Arrays.asList(seats[i][j], seats[i][j + 1], seats[i][j + 2], seats[i][j + 3]));
+				}
 			}
 		}
-		return null;
+		throw new NotEnoughSeatsException();
 	}
 
 	/**
 	 * @return true if the plane is full, otherwise false.
 	 */
 	public boolean isPlaneFull() {
-		return (reserved.size() == (rows * columns));
+		return (reserved.size() == (seats.length * seats[0].length));
+	}
+
+	public String[][] getseats() {
+		return seats;
 	}
 
 }
