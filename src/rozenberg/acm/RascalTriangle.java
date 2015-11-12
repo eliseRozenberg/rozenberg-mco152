@@ -1,4 +1,4 @@
-package acm;
+package rozenberg.acm;
 
 public class RascalTriangle {
 
