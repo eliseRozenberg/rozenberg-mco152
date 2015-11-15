@@ -1,7 +1,6 @@
 package rozenberg.airline;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -10,10 +9,10 @@ import java.util.HashSet;
  * methods.
  */
 public class AirplaneSeats {
-
-	String[][] seats;
 	HashSet<String> reserved;
-	StringBuilder builder = new StringBuilder();
+	StringBuilder builder;
+	int rows;
+	int cols;
 
 	/**
 	 * @param rows
@@ -22,16 +21,9 @@ public class AirplaneSeats {
 	 *            the number of columns of seats on the plane.
 	 */
 	public AirplaneSeats(int rows, int columns) {
-		seats = new String[rows][columns];
-
-		for (int i = 0; i < seats.length; i++) {
-			for (int j = 0; j < seats[i].length; j++) {
-				builder.append((char) (j + 65));
-				builder.append((i + 1));
-				seats[i][j] = builder.toString().trim();
-				builder.setLength(0);
-			}
-		}
+		this.rows = rows;
+		this.cols = columns;
+		builder = new StringBuilder();
 		reserved = new HashSet<String>();
 	}
 
@@ -46,25 +38,15 @@ public class AirplaneSeats {
 	 *             constructor
 	 */
 	public void reserve(String seatName) throws AlreadyReservedException, SeatOutOfBoundsException {
-		boolean found = false;
 		if (reserved.contains(seatName)) {
 			throw new AlreadyReservedException();
 		}
-		for (int i = 0; i < seats.length; i++) {
-			for (int j = 0; j < seats[i].length; j++) {
-				if (seats[i][j].equals(seatName)) {
-					reserved.add(seatName);
-					found = true;
-					break;
-				}
-				if (found) {
-					break;
-				}
-			}
-		}
-		if (!found) {
+		int letter = (seatName.charAt(0) - 64);
+		int number = Integer.parseInt(seatName.substring(1, seatName.length()));
+		if ((letter > cols) || (number > rows)) {
 			throw new SeatOutOfBoundsException();
 		}
+		reserved.add(seatName);
 	}
 
 	/**
@@ -105,17 +87,21 @@ public class AirplaneSeats {
 	 */
 	@Override
 	public String toString() {
+		StringBuilder seat = new StringBuilder();
 		builder.setLength(0);
 		builder.append("  ");
-		for (int j = 1; j <= seats[0].length; j++) {
+		for (int j = 1; j <= cols; j++) {
 			builder.append((char) (j + 64));
 		}
-		for (int i = 0; i < seats.length; i++) {
+		for (int i = 0; i < rows; i++) {
 			builder.append("\n");
 			builder.append((i + 1));
 			builder.append(" ");
-			for (int j = 0; j < seats[i].length; j++) {
-				if (reserved.contains(seats[i][j])) {
+			for (int j = 0; j < cols; j++) {
+				seat.setLength(0);
+				seat.append((char) (j + 65));
+				seat.append((i + 1));
+				if (reserved.contains(seat.toString())) {
 					builder.append('#');
 				} else {
 					builder.append('o');
@@ -138,18 +124,38 @@ public class AirplaneSeats {
 	 *             if there are not enough seats together to reserve.
 	 */
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether) throws NotEnoughSeatsException {
-		return null;
+		ArrayList<String> reserveGroup = new ArrayList<String>();
+		for (int i = 1; i <= rows; i++) {
+			for (int j = 1; j <= cols; j++) {
+				if (j + (numberOfSeatsTogether - 1) > cols) {
+					break;
+				}
+				for (int h = 0; h < numberOfSeatsTogether; h++) {
+					builder.setLength(0);
+					builder.append((char) ((j + h) + 64));
+					builder.append(i);
+					if (reserved.contains(builder.toString().trim())) {
+						reserveGroup.clear();
+						break;
+					} else {
+						reserveGroup.add(builder.toString());
+					}
+					if (reserveGroup.size() == numberOfSeatsTogether) {
+						for (String element : reserveGroup) {
+							reserved.add(element);
+						}
+						return reserveGroup;
+					}
+				}
+			}
+		}
+		throw new NotEnoughSeatsException();
 	}
 
 	/**
 	 * @return true if the plane is full, otherwise false.
 	 */
 	public boolean isPlaneFull() {
-		return (reserved.size() == (seats.length * seats[0].length));
+		return (reserved.size() == (rows * cols));
 	}
-
-	public String[][] getseats() {
-		return seats;
-	}
-
 }

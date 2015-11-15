@@ -101,6 +101,9 @@ public class AirplaneSeatsTest {
 	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserveGroup(3);
+		Assert.assertTrue(seats.isReserved("A1"));
+		Assert.assertTrue(seats.isReserved("B1"));
+		Assert.assertTrue(seats.isReserved("C1"));
 	}
 
 	@Test
@@ -114,9 +117,13 @@ public class AirplaneSeatsTest {
 			throws NotEnoughSeatsException, AlreadyReservedException, SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserve("A1");
-		seats.reserve("A2");
 		seats.reserve("B1");
+		seats.reserve("A2");
 		seats.reserveGroup(3);
+		Assert.assertTrue(seats.isReserved("B2"));
+		Assert.assertTrue(seats.isReserved("C2"));
+		Assert.assertTrue(seats.isReserved("D2"));
+		
 	}
 
 	@Test
@@ -127,17 +134,11 @@ public class AirplaneSeatsTest {
 
 	public void testReserveGroupThrowsNotEnoughSeatsException()
 			throws AlreadyReservedException, SeatOutOfBoundsException {
-		AirplaneSeats seats = new AirplaneSeats(2, 4);
+		AirplaneSeats seats = new AirplaneSeats(2, 2);
 		seats.reserve("A1");
 		seats.reserve("A2");
-		seats.reserve("B1");
-		seats.reserve("B2");
-		seats.reserve("C1");
-		seats.reserve("C2");
-		seats.reserve("D1");
-		seats.reserve("D2");
 		try {
-			seats.reserveGroup(3);
+			seats.reserveGroup(2);
 			Assert.fail("reserveGroup() should've thrown an Exception");
 		} catch (NotEnoughSeatsException e) {
 		}
