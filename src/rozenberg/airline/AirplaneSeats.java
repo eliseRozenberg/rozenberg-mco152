@@ -138,20 +138,7 @@ public class AirplaneSeats {
 	 *             if there are not enough seats together to reserve.
 	 */
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether) throws NotEnoughSeatsException {
-		for (int i = 0; i < seats.length; i++) {
-			for (int j = 0; j < seats[i].length; j++) {
-				if ((j + 3) < seats[i].length && (!reserved.contains(seats[i][j]) && !reserved.contains(seats[i][j + 1])
-						&& !reserved.contains(seats[i][j + 2]) && !reserved.contains(seats[i][j + 3]))) {
-					reserved.add(seats[i][j]);
-					reserved.add(seats[i][j + 1]);
-					reserved.add(seats[i][j + 2]);
-					reserved.add(seats[i][j + 3]);
-					return new ArrayList<String>(
-							Arrays.asList(seats[i][j], seats[i][j + 1], seats[i][j + 2], seats[i][j + 3]));
-				}
-			}
-		}
-		throw new NotEnoughSeatsException();
+		return null;
 	}
 
 	/**
