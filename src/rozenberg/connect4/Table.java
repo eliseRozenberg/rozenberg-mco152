@@ -39,38 +39,35 @@ public class Table {
 
 	public boolean check(int player) {
 
-		for (int j = 0; j < rows; j++) {
-			for (int i = 0; i < rows - 4; i++) {
-				if (table[i][j] == player && table[i][j] == table[i][j + 1] && table[i][j] == table[i][j + 2]
-						&& table[i][j] == table[i][j + 3]) {
+		for (int col = 0; col < cols; col++) {
+			for (int row = 0; row < cols - 4; row++) {
+				if (table[row][col] == player && table[row][col] == table[row + 1][col]
+						&& table[row + 1][col] == table[row + 2][col] && table[row + 2][col] == table[row + 3][col]) {
 					return true;
 				}
 			}
 		}
-
-		for (int j = 0; j < cols; j++) {
-			for (int i = 0; i < cols - 4; i++) {
-				if (table[i][j] == player && table[i][j] == table[i + 1][j] && table[i][j] == table[i + 2][j]
-						&& table[i][j] == table[i + 3][j]) {
+		for (int col = 0; col < rows; col++) {
+			for (int row = 0; row < rows - 4; row++) {
+				if (table[row][col] == player && table[row][col] == table[row][col + 1]
+						&& table[row][col + 1] == table[row][col + 2] && table[row][col + 2] == table[row][col + 3]) {
 					return true;
 				}
 			}
 		}
-
-		for (int i = 3; i < rows; i++) {
-			for (int j = 0; j < rows - 2; j++) {
-				if (table[i][j] == player && table[i][j] == table[i - 1][j + 1] && table[i][j] == table[i - 2][j + 2]
-						&& table[i][j] == table[i - 3][j + 3]) {
+		for (int row = 3; row < rows; row++) {
+			for (int col = 0; col < rows - 2; col++) {
+				if (table[row][col] == player && table[row][col] == table[row - 1][col + 1]
+						&& table[row - 1][col + 1] == table[row - 2][col + 2]
+						&& table[row - 2][col + 2] == table[row - 3][col + 3]) {
 					return true;
 				}
 			}
 		}
-
-		// diagonal down
-		for (int i = 0; i < rows - 3; i++) {
-			for (int j = 0; j < rows - 2; j++) {
-				if (table[i][j] == player && table[i][j] == table[i + 1][j + 1] && table[i][j] == table[i + 2][j + 2]
-						&& table[i][j] == table[i + 3][j + 3]) {
+		for (int row = 0; row < rows - 3; row++) {
+			for (int col = 0; col < rows - 2; col++) {
+				if (table[row][col] == player && table[row][col] == table[row + 1][col + 1]
+						&& table[row][col] == table[row + 2][col + 2] && table[row][col] == table[row + 3][col + 3]) {
 					return true;
 				}
 			}

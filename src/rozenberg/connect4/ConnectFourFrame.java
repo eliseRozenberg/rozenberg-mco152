@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ConnectFourGUI extends JFrame {
+public class ConnectFourFrame extends JFrame {
 	/**
 	 * 
 	 */
@@ -29,7 +29,7 @@ public class ConnectFourGUI extends JFrame {
 	private int player;
 	private Table table;
 
-	public ConnectFourGUI() {
+	public ConnectFourFrame() {
 		setTitle("CONNECT 4");
 		setSize(900, 900);
 		setResizable(false);
@@ -110,7 +110,7 @@ public class ConnectFourGUI extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new ConnectFourGUI().setVisible(true);
+		new ConnectFourFrame().setVisible(true);
 
 	}
 }
