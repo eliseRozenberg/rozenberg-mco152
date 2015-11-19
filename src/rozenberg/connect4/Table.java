@@ -41,7 +41,7 @@ public class Table {
 
 		for (int j = 0; j < rows; j++) {
 			for (int i = 0; i < rows - 4; i++) {
-				if ((table[i][j] == player) && table[i][j] == table[i][j + 1] && table[i][j] == table[i][j + 2]
+				if (table[i][j] == player && table[i][j] == table[i][j + 1] && table[i][j] == table[i][j + 2]
 						&& table[i][j] == table[i][j + 3]) {
 					return true;
 				}
@@ -50,7 +50,7 @@ public class Table {
 
 		for (int j = 0; j < cols; j++) {
 			for (int i = 0; i < cols - 4; i++) {
-				if ((table[i][j] == player) && table[i][j] == table[i + 1][j] && table[i][j] == table[i + 2][j]
+				if (table[i][j] == player && table[i][j] == table[i + 1][j] && table[i][j] == table[i + 2][j]
 						&& table[i][j] == table[i + 3][j]) {
 					return true;
 				}
@@ -59,7 +59,7 @@ public class Table {
 
 		for (int i = 3; i < rows; i++) {
 			for (int j = 0; j < rows - 2; j++) {
-				if ((table[i][j] == player) && table[i][j] == table[i - 1][j + 1] && table[i][j] == table[i - 2][j + 2]
+				if (table[i][j] == player && table[i][j] == table[i - 1][j + 1] && table[i][j] == table[i - 2][j + 2]
 						&& table[i][j] == table[i - 3][j + 3]) {
 					return true;
 				}
@@ -69,7 +69,7 @@ public class Table {
 		// diagonal down
 		for (int i = 0; i < rows - 3; i++) {
 			for (int j = 0; j < rows - 2; j++) {
-				if ((table[i][j] == player) && table[i][j] == table[i + 1][j + 1] && table[i][j] == table[i + 2][j + 2]
+				if (table[i][j] == player && table[i][j] == table[i + 1][j + 1] && table[i][j] == table[i + 2][j + 2]
 						&& table[i][j] == table[i + 3][j + 3]) {
 					return true;
 				}
