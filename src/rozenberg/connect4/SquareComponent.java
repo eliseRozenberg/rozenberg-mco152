@@ -24,11 +24,12 @@ public class SquareComponent extends JComponent {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(color);
 		g.fillOval(15, 15, getWidth() - 30, getHeight() - 30);
-		super.repaint();
 	}
 
 	public void setColor(Color color) {
 		this.color = color;
+		super.repaint();
+
 	}
 
 }

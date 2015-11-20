@@ -3,7 +3,7 @@ package rozenberg.connect4;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class testConnectFour {
+public class ConnectFourTest {
 
 	@Test
 	public void testCheckCell() {
