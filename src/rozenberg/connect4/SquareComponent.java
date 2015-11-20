@@ -29,7 +29,6 @@ public class SquareComponent extends JComponent {
 	public void setColor(Color color) {
 		this.color = color;
 		super.repaint();
-
 	}
 
 }

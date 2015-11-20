@@ -44,7 +44,7 @@ public class ConnectFourFrame extends JFrame {
 		squares = new SquareComponent[rows][cols];
 		buttons = new JButton[cols];
 		background = new ImageIcon("pink.jpg");
-		Image image = background.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+		Image image = background.getImage();
 
 		arrow = new ImageIcon("arrow.jpg");
 		Image image1 = arrow.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
@@ -63,10 +63,9 @@ public class ConnectFourFrame extends JFrame {
 					int col = Integer.parseInt(arg.getActionCommand());
 					int row = table.setCell(col, player);
 					if (row != -1) {
-						
-							row = (-5 + row) * -1;
-						
-						
+
+						row = (-5 + row) * -1;
+
 						squares[row][col].setColor(table.getPlayer(player).getColor());
 						if (table.check(player)) {
 							newGame(JOptionPane.showConfirmDialog(null, "Play New Game ??",
