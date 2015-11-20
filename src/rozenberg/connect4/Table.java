@@ -47,8 +47,8 @@ public class Table {
 				}
 			}
 		}
-		for (int col = 0; col < rows; col++) {
-			for (int row = 0; row < rows - 4; row++) {
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < rows - 2; col++) {
 				if (table[row][col] == player && table[row][col] == table[row][col + 1]
 						&& table[row][col + 1] == table[row][col + 2] && table[row][col + 2] == table[row][col + 3]) {
 					return true;

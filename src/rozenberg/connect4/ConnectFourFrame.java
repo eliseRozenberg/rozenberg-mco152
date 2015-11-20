@@ -63,11 +63,10 @@ public class ConnectFourFrame extends JFrame {
 					int col = Integer.parseInt(arg.getActionCommand());
 					int row = table.setCell(col, player);
 					if (row != -1) {
-						if (row != 5) {
+						
 							row = (-5 + row) * -1;
-						} else {
-							row = 0;
-						}
+						
+						
 						squares[row][col].setColor(table.getPlayer(player).getColor());
 						if (table.check(player)) {
 							newGame(JOptionPane.showConfirmDialog(null, "Play New Game ??",
