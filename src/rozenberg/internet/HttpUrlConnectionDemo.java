@@ -20,7 +20,8 @@ public class HttpUrlConnectionDemo {
 				"http://api.openweathermap.org/data/2.5/weather?zip=10952,us&appid=2de143494c0b295cca9337e1e96b00e0&units=imperial");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		InputStream in = connection.getInputStream();
-		//using a buffered reader to read a file - can be on our computer or on a server anywhere in the world
+		// using a buffered reader to read a file - can be on our computer or on
+		// a server anywhere in the world
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		String line;
 		while ((line = reader.readLine()) != null) {
