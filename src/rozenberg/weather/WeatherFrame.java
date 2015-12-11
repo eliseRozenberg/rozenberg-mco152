@@ -31,7 +31,6 @@ public class WeatherFrame extends JFrame {
 	private JTextField zipField;
 	private WeatherConnect weather;
 	private Font font;
-	private StringBuilder builder;
 
 	/**
 	 * 
@@ -46,7 +45,6 @@ public class WeatherFrame extends JFrame {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		builder = new StringBuilder();
 		weather = new WeatherConnect();
 
 		heading = new JLabel("...WEATHER");
@@ -144,31 +142,17 @@ public class WeatherFrame extends JFrame {
 		zipButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String zip = zipField.getText().toString();
-				Pattern pattern = Pattern.compile("^[0-9]{5}?$");
+				Pattern pattern = Pattern.compile("^[0-9]{5}");
 				if (pattern.matcher(zip).matches()) {
 					zipError.setText("");
 					try {
-						builder.delete(0, builder.length());
 						weather.getWeatherInfo(zip);
-						builder.append("http://openweathermap.org/img/w/");
-						builder.append(weather.getIcon());
-						builder.append(".png");
-						icon = new ImageIcon(new URL(builder.toString()));
+						icon = new ImageIcon(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
 						image = icon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
 						imageLabel.setIcon(new ImageIcon(image));
-						builder.delete(0, builder.length());
-						builder.append(weather.getName());
-						builder.append("      ");
-						name.setText(builder.toString());
-						builder.delete(0, builder.length());
-						builder.append(weather.getTemp());
-						builder.append("°F");
-						temp.setText(builder.toString());
-						builder.delete(0, builder.length());
-						builder.append("\nHumidity: ");
-						builder.append(weather.getHumidity());
-						builder.append("%     ");
-						humidity.setText(builder.toString());
+						name.setText(weather.getName() + "      ");
+						temp.setText(weather.getTemp() + "°F");
+						humidity.setText("\nHumidity: " + weather.getHumidity() + "%     ");
 						description.setText(weather.getDescription().toUpperCase());
 					} catch (IOException | InvalidZipException e1) {
 						zipError.setText("INVALID ZIP");
@@ -178,6 +162,7 @@ public class WeatherFrame extends JFrame {
 				}
 			}
 		});
+
 	}
 
 	public static void main(String[] args) {

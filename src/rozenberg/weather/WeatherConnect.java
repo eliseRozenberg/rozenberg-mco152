@@ -7,18 +7,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.junit.runner.notification.RunListener.ThreadSafe;
+
 import com.google.gson.Gson;
 
 public class WeatherConnect {
 	private WeatherInfo info;
 
 	public void getWeatherInfo(String zip) throws IOException, InvalidZipException {
-
-		StringBuilder builder = new StringBuilder();
-		builder.append("http://api.openweathermap.org/data/2.5/weather?zip=");
-		builder.append(zip);
-		builder.append(",us&appid=2de143494c0b295cca9337e1e96b00e0&units=imperial");
-		URL url = new URL(builder.toString());
+		URL url = new URL("http://api.openweathermap.org/data/2.5/weather?zip=" + zip
+				+ ",us&appid=2de143494c0b295cca9337e1e96b00e0&units=imperial");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		InputStream in = connection.getInputStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
