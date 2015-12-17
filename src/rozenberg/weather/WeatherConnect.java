@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.junit.runner.notification.RunListener.ThreadSafe;
 
 import com.google.gson.Gson;
 

@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 public class WeatherFrame extends JFrame {
 	private JPanel zipPanel, backgroundPanel, weatherPanel;
 
@@ -141,25 +143,31 @@ public class WeatherFrame extends JFrame {
 
 		zipButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String zip = zipField.getText().toString();
-				Pattern pattern = Pattern.compile("^[0-9]{5}");
-				if (pattern.matcher(zip).matches()) {
-					zipError.setText("");
-					try {
-						weather.getWeatherInfo(zip);
-						icon = new ImageIcon(new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
-						image = icon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
-						imageLabel.setIcon(new ImageIcon(image));
-						name.setText(weather.getName() + "      ");
-						temp.setText(weather.getTemp() + "°F");
-						humidity.setText("\nHumidity: " + weather.getHumidity() + "%     ");
-						description.setText(weather.getDescription().toUpperCase());
-					} catch (IOException | InvalidZipException e1) {
-						zipError.setText("INVALID ZIP");
+				Thread thread = new Thread() {
+					public void run() {
+						String zip = zipField.getText().toString();
+						Pattern pattern = Pattern.compile("^[0-9]{5}");
+						if (pattern.matcher(zip).matches()) {
+							zipError.setText("");
+							try {
+								weather.getWeatherInfo(zip);
+								icon = new ImageIcon(
+										new URL("http://openweathermap.org/img/w/" + weather.getIcon() + ".png"));
+								image = icon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+								imageLabel.setIcon(new ImageIcon(image));
+								name.setText(weather.getName() + "      ");
+								temp.setText(weather.getTemp() + "°F");
+								humidity.setText("\nHumidity: " + weather.getHumidity() + "%     ");
+								description.setText(weather.getDescription().toUpperCase());
+							} catch (IOException | InvalidZipException e1) {
+								zipError.setText("INVALID ZIP");
+							}
+						} else {
+							zipError.setText("INVALID ZIP");
+						}
 					}
-				} else {
-					zipError.setText("INVALID ZIP");
-				}
+				};
+				thread.start();
 			}
 		});
 
