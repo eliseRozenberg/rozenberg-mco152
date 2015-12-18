@@ -1,6 +1,5 @@
 package rozenberg.contactList;
 
-
 public class Address {
 	private String street;
 	private String suite;
