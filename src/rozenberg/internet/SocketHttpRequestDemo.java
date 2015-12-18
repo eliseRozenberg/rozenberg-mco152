@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import javax.sound.sampled.Line;
 
 public class SocketHttpRequestDemo {
 

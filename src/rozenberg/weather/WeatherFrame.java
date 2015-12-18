@@ -19,8 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 public class WeatherFrame extends JFrame {
 	private JPanel zipPanel, backgroundPanel, weatherPanel;
 
