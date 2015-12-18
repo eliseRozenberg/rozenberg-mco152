@@ -1,6 +1,5 @@
 package rozenberg.contactList;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.io.BufferedReader;
@@ -10,18 +9,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
-
-import javax.swing.BoxLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.xml.stream.events.Namespace;
-
 import com.google.gson.Gson;
-
-import rozenberg.weather.SelectionSort;
 
 public class ContactFrame extends JFrame {
 	/**
@@ -30,7 +20,6 @@ public class ContactFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JList<String> contactList;
-	private JPanel panel;
 	private ContactList contacts;
 	private String[] contactNames;
 
@@ -56,6 +45,15 @@ public class ContactFrame extends JFrame {
 					contactNames = new String[contacts.size()];
 					for (int i = 0; i < contactNames.length; i++) {
 						contactNames[i] = contacts.get(i).getName();
+					}
+					for (int j = 0; j < contactNames.length; j++) {
+						for (int i = j + 1; i < contactNames.length; i++) {
+							if (contactNames[i].compareTo(contactNames[j]) < 0) {
+								String temp = contactNames[j];
+								contactNames[j] = contactNames[i];
+								contactNames[i] = temp;
+							}
+						}
 					}
 					contactList.setListData(contactNames);
 				} catch (MalformedURLException e) {
