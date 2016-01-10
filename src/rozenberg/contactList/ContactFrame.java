@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 import javax.swing.JList;
 import com.google.gson.Gson;
@@ -46,15 +48,7 @@ public class ContactFrame extends JFrame {
 					for (int i = 0; i < contactNames.length; i++) {
 						contactNames[i] = contacts.get(i).getName();
 					}
-					for (int j = 0; j < contactNames.length; j++) {
-						for (int i = j + 1; i < contactNames.length; i++) {
-							if (contactNames[i].compareTo(contactNames[j]) < 0) {
-								String temp = contactNames[j];
-								contactNames[j] = contactNames[i];
-								contactNames[i] = temp;
-							}
-						}
-					}
+					Arrays.sort(contactNames);
 					contactList.setListData(contactNames);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
@@ -70,6 +64,7 @@ public class ContactFrame extends JFrame {
 	public static void main(String[] args) {
 		ContactFrame frame = new ContactFrame();
 		frame.setVisible(true);
+		
 	}
 
 }

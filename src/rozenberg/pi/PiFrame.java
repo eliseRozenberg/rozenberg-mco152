@@ -8,6 +8,11 @@ import javax.swing.JLabel;
 
 public class PiFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PiFrame() {
 		setTitle("");
 		setSize(800, 600);

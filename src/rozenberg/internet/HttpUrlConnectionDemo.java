@@ -1,4 +1,4 @@
-package rozenberg.internet;
+ package rozenberg.internet;
 
 import java.io.BufferedReader;
 import java.io.IOException;

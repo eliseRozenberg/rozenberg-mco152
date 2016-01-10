@@ -16,7 +16,7 @@ public class JFrameDemo extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	// if you have components to be used, add them here
-	//private JTextField textField1;
+	// private JTextField textField1;
 	private JLabel textLabel1;
 	private JLabel textLabel2;
 	private JLabel textLabel3;
