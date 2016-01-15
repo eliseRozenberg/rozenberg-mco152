@@ -28,11 +28,14 @@ import javax.swing.JTextField;
 
 import com.google.gson.Gson;
 
-import rozenberg.connect4.ConnectFourFrame;
-import rozenberg.contactList.ContactList;
+
 
 public class NYPLFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JList<Result> resultList;
 	private JLabel pic;
 	private NYPLapi nyplapi;
