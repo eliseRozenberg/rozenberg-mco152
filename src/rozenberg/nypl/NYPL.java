@@ -1,10 +1,10 @@
 package rozenberg.nypl;
 
 public class NYPL {
-	private NYPLapi nypLapi;
+	private NYPLapi nyplAPI;
 
 	public NYPLapi getNypLapi() {
-		return nypLapi;
+		return nyplAPI;
 	}
 
 }

@@ -7,6 +7,5 @@ public class Capture {
 	public ImageLinks getImageLinks() {
 		return imageLinks;
 	}
-	
 
 }

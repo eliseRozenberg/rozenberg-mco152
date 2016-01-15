@@ -20,4 +20,8 @@ public class Result {
 		this.title = title;
 	}
 
+	public String toString() {
+		return title;
+	}
+
 }

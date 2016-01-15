@@ -11,5 +11,7 @@ public class Response {
 	public Result[] getResult() {
 		return result;
 	}
+	
+	
 
 }
